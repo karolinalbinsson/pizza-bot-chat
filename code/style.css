@@ -1,16 +1,119 @@
 body{
     background-color: #333;
     color: white;
+    display: flex;
+    justify-content: center;
+    background-image: url("./images/plainPizza.jpg");
+    
 }
 
+.hawaii {
+    background-image: url("./images/hawaii.jpg");
+}
+
+body .vegetarian{
+    background-image: url("./images/vegetarian.jpg");
+}
+
+body .pepperoni{
+    background-image: url("./images/pepperoni.jpg");
+}
+
+.pizza-wrapper{
+    margin-top: 20vh;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 700px;
+    background-color: papayawhip;
+    padding: 10px;
+}
+
+.form-title{
+    color: #333;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+#order-form{
+    background-color: #ffa5008f;
+    padding: 10px;
+    color: #333;
+    flex:2;
+    font-family: 'Roboto', sans-serif;
+}
+
+label{
+   
+}
 #order-confirmation{
     background-color: antiquewhite;
     color: black;
+   flex:1;
+    display: flex;
+    max-width: 200px;
+    padding: 10px;
+    font-family: monospace;
 }
 
-.flex-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
+.input-wrap{
+    margin-top: 20px;
+}
+
+input[type=text]
+{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+select{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: white;
+    width: 40%;
+    height:10px;
+    cursor: pointer;
+}
+
+input[type=range]:focus{
+    border: none;
+    outline:none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #333;
+   border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+button{
+    border-radius: 5px;
+    border:none;
+    background-color: #673ab7;
+    font-weight: bold;
+    color: white;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+button:hover{
+    background-color: #009688;
+}
+#pizza-select > option{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }

@@ -53,8 +53,28 @@ const calculateCookingTime = (orderQuantity) =>{
     return cookingTime;
 }
 
+const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
+   return (`Receipt for: ${customerName}<br> You have ordered: ${pizzaName} <br>Total Price: ${orderTotal} SEK<br> Estimated cooking time: ${orderInfo} minutes.<br>`);    
+}
 
+const setPizzaPic = (pizzaName) =>{
+    if (pizzaName.match(/Hawaiian.*/)){
+        let inBody = document.getElementById("body");
+    
+            inBody.classList.toggle(".hawaii");
+    }
+    else if (pizzaName.match(/Pepperoni.*/)){
+        let inBody = document.getElementById("body");
 
+            inBody.classList.toggle(".pepperoni");
+    }
+    else if (pizzaName.match(/Vegetarian.*/)){
+        let inBody = document.getElementById("body");
+        
+        inBody.classList.toggle(".vegetarian");
+    }
+
+}
 /* PGM START 
 
 
@@ -76,11 +96,15 @@ const createOrder = () =>{
         let orderInfo = calculateCookingTime(orderQuantity);
 
         //Summarize order
-     let orderSummary = (`Okay ${customerName}, I'll let started on you ${pizzaName} right away, and it'll cost you ${orderTotal} kr.\n The order will take ${orderInfo} minutes.`);
-    
+    // let orderSummary = (`Okay ${customerName}, I'll let started on you ${pizzaName} right away, and it'll cost you ${orderTotal} kr.\n The order will take ${orderInfo} minutes.`);
+    let orderSummary = printReceipt(customerName,pizzaName,orderTotal,orderInfo);
+  
     //Put order info in the html-doc
-    document.getElementById("order-confirmation").innerHTML = orderSummary;
+    document.getElementById("order-confirmation-p").innerHTML = orderSummary;
     
+
+    //Change background picture depending on pizza style
+        setPizzaPic(pizzaName);
 return false;
 }
 
@@ -108,3 +132,7 @@ else alert("Pick a pizza from the menu");
 
 */
 
+const changeRangeDisplayValue = () =>{
+    let rangeVal = document.getElementById("pizza-slider").value;
+    document.getElementById("output-range").innerHTML = rangeVal;
+}

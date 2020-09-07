@@ -4,38 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css"> 
     <title>Project 4: Pizzabot</title>
   </head>
-  <body>
-    <h1>This is the Pizza Bot</h1>
+  <body id="body">
    
-<section class="flex-container">
-    <section id="pizza-wrapper">
-      <form id="order-form" method="post">
-        <label for="user-name">Name</label><br>
-        <input type="text" id="user-name" name="user-name" required><br>
-       
-        <label for="pizza-select">Select pizza</label><br>
-          <select name="pizza-select" id="pizza-select" required>
-            <option value="Hawaiian Pizza">Hawaiian Pizza</option>
-            <option value="Pepperoni Pizza">Pepperoni Pizza</option>
-            <option value="Vegetarian Pizza">Vegetarian Pizza</option>
-          </select>
+   
 
-          <div class="slidecontainer">
-            <label for="pizza-slider">Select how many pizzas you want</label><br>
-            <input type="range" min="1" max="10" value="1" class="pizza-slider" id="pizza-slider">
+ 
+    <section class="pizza-wrapper">
+          <form id="order-form" method="post">
+          
+          <h5 class="form-title">Welcome to the pizza bot! Order your pizza here.</h5>
+          <div class="input-wrap">
+            <label for="user-name">Name</label><br>
+            <input type="text" id="user-name" name="user-name" required><br>
           </div>
+          <div class="input-wrap">
+            <label for="pizza-select">Select pizza</label><br>
+            <select name="pizza-select" id="pizza-select" required>
+              <option value="Hawaiian Pizza">Hawaiian Pizza</option>
+              <option value="Pepperoni Pizza">Pepperoni Pizza</option>
+              <option value="Vegetarian Pizza">Vegetarian Pizza</option>
+            </select>
+          </div>
+           
+          <div class="input-wrap"> 
+            <div class="slidecontainer">
+            <label for="pizza-slider">Select how many pizzas you want</label><br>
+            <input type="range" min="1" max="10" value="1" class="pizza-slider" id="pizza-slider" onchange="changeRangeDisplayValue()">
+            <output id= "output-range" name="output-range" for="pizza-slider" ></output>
+          </div>
+        </div>
 
-          <button onClick="return createOrder()">Place order</button>
-      </form>
+             <div class="input-wrap">
+              <button type="button" onClick="return createOrder()">Place order</button>
+        
+             </div>
+              
+           
+            </form>
+
+
+          <section id="order-confirmation">
+            <p id="order-confirmation-p">
+           This is your receipt
+          </section>
+        </p>
+
     </section>
 
-    <section id="order-confirmation">
-      
-    </section>
   </section>
     <script src="./pizzabot2.js"></script>
 
