@@ -78,10 +78,21 @@ const setPizzaPic = (pizzaName) =>{
 
 /*Get the elements of the form*/
 const createOrder = () =>{
-    console.log("Create order function");
-    let customerName = document.getElementById("user-name").value;
-    let pizzaName = document.getElementById("pizza-select").value;
-    let orderQuantity = document.getElementById("pizza-slider").value;
+
+    const checkProgressBar =  document.getElementById("pizza-progress").value;
+    if(checkProgressBar != "3")
+    {
+        alert("Hmm, are you sure you've filled in all of your choices?")
+        return false;
+    }
+    else
+    {
+        document.getElementById("pizza-progress").value = 4;
+        document.getElementById("order-confirmation").style.display="flex";
+        console.log("Create order function");
+        let customerName = document.getElementById("user-name").value;
+        let pizzaName = document.getElementById("pizza-select").value;
+        let orderQuantity = document.getElementById("pizza-slider").value;
 
   
         //No need for validation on pizza name, its in the selectlist
@@ -103,6 +114,8 @@ const createOrder = () =>{
 
     //Change background picture depending on pizza style
         setPizzaPic(pizzaName);
+    }
+    
 return false;
 }
 
@@ -133,4 +146,29 @@ else alert("Pick a pizza from the menu");
 const changeRangeDisplayValue = () =>{
     let rangeVal = document.getElementById("pizza-slider").value;
     document.getElementById("output-range").innerHTML = rangeVal;
+    checkProgress();
+}
+
+const checkProgress = () =>{
+    console.log("checkProgress");
+    let checkObjects = new Array();
+    checkObjects[0] = document.getElementById("user-name").value;
+    checkObjects[1] = document.getElementById("pizza-select").value;
+    checkObjects[2] = document.getElementById("pizza-slider").value;
+   // console.log(checkObjects.length);
+    let progress = 0;
+    let i=0;
+   // console.log(i);
+
+   for(i=0;i<checkObjects.length;i++)
+   {
+       
+       //console.log("i forloopen" + checkObjects[i]);
+       if(checkObjects[i] != "" && checkObjects[i] != "0"){
+          // console.log("värde i array : " + checkObjects[i]);
+           progress++;
+       }
+       //console.log(progress + "progress efter loopen kört");
+   }
+    document.getElementById("pizza-progress").setAttribute("value",progress);
 }
