@@ -7,16 +7,17 @@ body{
     
 }
 
+
 .hawaii {
-    background-image: url("./images/hawaii.jpg");
+    src: url("./images/hawaii.jpg");
 }
 
 body .vegetarian{
-    background-image: url("./images/vegetarian.jpg");
+    src: url("./images/vegetarian.jpg");
 }
 
 body .pepperoni{
-    background-image: url("./images/pepperoni.jpg");
+    src: url("./images/pepperoni.jpg");
 }
 
 .pizza-wrapper{
@@ -56,6 +57,12 @@ label{
     max-width: 200px;
     padding: 10px;
     font-family: monospace;
+
+    flex-direction: column;
+}
+
+#pizza-icon{
+    max-width: 99%;
 }
 
 .input-wrap{

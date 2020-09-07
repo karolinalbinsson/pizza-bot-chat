@@ -58,20 +58,18 @@ const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
 }
 
 const setPizzaPic = (pizzaName) =>{
-    if (pizzaName.match(/Hawaiian.*/)){
-        let inBody = document.getElementById("body");
     
-            inBody.classList.toggle(".hawaii");
+    
+    if (pizzaName.match(/Hawaiian.*/)){   
+        document.getElementById("pizza-icon").src = "./images/hawaii.jpg";
     }
     else if (pizzaName.match(/Pepperoni.*/)){
-        let inBody = document.getElementById("body");
-
-            inBody.classList.toggle(".pepperoni");
+       
+        document.getElementById("pizza-icon").src = "./images/pepperoni.jpg";
     }
     else if (pizzaName.match(/Vegetarian.*/)){
-        let inBody = document.getElementById("body");
         
-        inBody.classList.toggle(".vegetarian");
+        document.getElementById("pizza-icon").src = "./images/vegetarian.jpg";;
     }
 
 }
