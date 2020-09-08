@@ -1,8 +1,27 @@
-const vegetarian = "Vegetarian Pizza";
+/*const vegetarian = "Vegetarian Pizza";
 const hawaiian = "Hawaiian Pizza";
 const pepperoni = "Pepperoni Pizza";
 
 const pizzaPrice = 80;
+*/
+
+/*create an array filled with objects of pizzainformation*/
+const vegetarian = {type:"vegetarian",price:80,fullName:"Vegetarian Pizza"};
+const hawaiian = {type:"hawaiian",price:80,fullName:"Hawaiian Pizza"};
+const pepperoni = {type:"pepperoni",price:90,fullName:"Pepperoni Pizza"};
+const margerita = {type:"margerita",price:90,fullName:"Margherita Pizza"};
+const quattro = {type:"quattro",price:120,fullName:"Quattro Stagione Pizza"};
+//create the array
+let pizzas = new Array();
+
+//add the objects to the array
+pizzas.push(vegetarian,hawaiian,pepperoni,margerita,quattro);
+
+//How to access the price for a certain pizza
+var pizzaIndex = pizzas.indexOf(pepperoni);
+var pizzaPrice = pizzas[pizzaIndex].price;
+
+
 //let orderQuantity;
 
 //Put your Javscript code here:
@@ -32,7 +51,17 @@ const validatePizzaName = (orderName = "defaultPizza") => {
 } 
 
 /*Total cost function*/ 
-const calculateTotalCost = (orderQuantity,pizzaPrice) =>{
+const calculateTotalCost = (orderQuantity,pizzaName) =>{
+    console.log("In calculate total cost");
+    console.log(pizzaName) + " pizzaName";
+
+    //Access the price from the pizzaArray
+    let pizzaPrice = pizzas.find(x => x.type === pizzaName).price;
+    
+    console.log(pizzaPrice + "pizzaPrice of X");
+   
+
+    console.log(pizzaPrice + " first pizzaPice for " + pizzas[pizzaIndex].type)
     let total = orderQuantity * pizzaPrice;
     return total;
 }
@@ -54,20 +83,23 @@ const calculateCookingTime = (orderQuantity) =>{
 }
 
 const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
-   return (`Receipt for: ${customerName}<br> You have ordered: ${pizzaName} <br>Total Price: ${orderTotal} SEK<br> Estimated cooking time: ${orderInfo} minutes.<br>`);    
+    //Get the fullname from the pizza object
+    let pizzaNameOut = pizzas.find(x => x.type === pizzaName).fullName;
+    
+   return (`<b>Receipt for:</b> ${customerName}<br> <b>You have ordered:</b> ${pizzaNameOut} <br><b>Total Price:</b> ${orderTotal} SEK<br> <b>Estimated cooking time:</b> ${orderInfo} minutes.<br>`);    
 }
 
 const setPizzaPic = (pizzaName) =>{
     
     
-    if (pizzaName.match(/Hawaiian.*/)){   
+    if (pizzaName.match(/hawaiian.*/)){   
         document.getElementById("pizza-icon").src = "./images/hawaii.jpg";
     }
-    else if (pizzaName.match(/Pepperoni.*/)){
+    else if (pizzaName.match(/pepperoni.*/)){
        
         document.getElementById("pizza-icon").src = "./images/pepperoni.jpg";
     }
-    else if (pizzaName.match(/Vegetarian.*/)){
+    else if (pizzaName.match(/vegetarian.*/)){
         
         document.getElementById("pizza-icon").src = "./images/vegetarian.jpg";;
     }
@@ -90,30 +122,28 @@ const createOrder = () =>{
         document.getElementById("pizza-progress").value = 4;
         document.getElementById("order-confirmation").style.display="flex";
         console.log("Create order function");
+
         let customerName = document.getElementById("user-name").value;
         let pizzaName = document.getElementById("pizza-select").value;
         let orderQuantity = document.getElementById("pizza-slider").value;
 
   
-        //No need for validation on pizza name, its in the selectlist
-        //validatePizzaName(pizzaName);
-        if(orderQuantity>1)
-        {
-            pizzaName += "s";
-        }
-        let orderTotal = calculateTotalCost(orderQuantity,pizzaPrice);
+        
+
+        let orderTotal = calculateTotalCost(orderQuantity,pizzaName);
         let orderInfo = calculateCookingTime(orderQuantity);
 
         //Summarize order
     // let orderSummary = (`Okay ${customerName}, I'll let started on you ${pizzaName} right away, and it'll cost you ${orderTotal} kr.\n The order will take ${orderInfo} minutes.`);
-    let orderSummary = printReceipt(customerName,pizzaName,orderTotal,orderInfo);
-  
-    //Put order info in the html-doc
-    document.getElementById("order-confirmation-p").innerHTML = orderSummary;
+        let orderSummary = printReceipt(customerName,pizzaName,orderTotal,orderInfo);
     
+        //Put order info in the html-doc
+        document.getElementById("order-confirmation-p").innerHTML = orderSummary;
+        
 
-    //Change background picture depending on pizza style
-        setPizzaPic(pizzaName);
+        //Change background picture depending on pizza style
+            setPizzaPic(pizzaName);
+            setCookingTimer(orderInfo);
     }
     
 return false;
@@ -171,4 +201,37 @@ const checkProgress = () =>{
        //console.log(progress + "progress efter loopen kört");
    }
     document.getElementById("pizza-progress").setAttribute("value",progress);
+}
+
+
+const setCookingTimer = (cookingTime) =>{
+    var d1 = new Date ();
+    var d2 = new Date ( d1 );
+    d2.setMinutes ( d1.getMinutes() + cookingTime );
+    
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = d2 - now;
+       
+        // Time calculations for days, hours, minutes and seconds
+        //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        
+        // Display the result in the element with id="demo"
+        document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "The pizza is done!";
+        }
+        }, 1000);
 }
