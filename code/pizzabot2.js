@@ -232,6 +232,7 @@ const setCookingTimer = (cookingTime) =>{
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("timer").innerHTML = "The pizza is done!";
+            document.getElementById("timer-label").innerHTML = ""; 
         }
         }, 1000);
 }
