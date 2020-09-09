@@ -3,15 +3,26 @@
     src: url(./fonts/Semplicita\ Medium.otf);
   }
 
+  /*formulär gul #ffda97
+    formulär vit #ffefd5
+  */
+
 body{
     background-color: #333;
     color: white;
     display: flex;
     justify-content: center;
-    background-image: url("./images/plainPizza.jpg");
+   /* background-image: url("./images/plainPizza.jpg");*/
     
 }
-
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+  }
 
 .hawaii {
     src: url("./images/hawaii.jpg");
@@ -32,27 +43,29 @@ body .pepperoni{
     justify-content: space-evenly;
     flex-direction: column;
     align-items: stretch;
-    min-width: 50%;
-    background-color: papayawhip;
+    min-width: 30%;
+    background-color:#013b56;
     padding: 10px;
+    border-radius: 5px;
+
 }
 
 .form-title{
-    color: #333;
+    color: #fff;
     font-size: 2em;
     margin: 10px 0px;
 
 }
 .form-sub-title{
-    color: #333;
+    color: #fff;
     font-size: 1em;
     margin: 5px 0px;
 }
 
 #order-form{
-    background-color: #ffa5004a;
+   
     padding: 10px;
-    color: #333;
+    color: #fff;
     flex:2;
     font-family: 'semplicita-medium', sans-serif;
 }
@@ -67,7 +80,7 @@ progress[value] {
   }
 
   #pizza-progress-label{
-      color: #333;
+      color: #fff;
       font-family: 'semplicita-medium', sans-serif;
   }
 
@@ -82,19 +95,23 @@ progress[value] {
     background-size: 35px 20px, 100% 100%, 100% 100%;
   } 
 #order-confirmation{
-   
-    color: black;
-    flex:1;
+    flex: 1;
     display: none;
-    max-width: 200px;
+    max-width: 450px;
     padding: 10px;
-    font-family: monospace;
+    font-family: 'semplicita-medium', sans-serif;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.2em;
+}
 
+.confirmation-text-wrap{
+    display: flex;
     flex-direction: column;
 }
 
 #pizza-icon{
-    max-width: 99%;
+    max-width: 40%;
 }
 
 .input-wrap{
@@ -126,7 +143,7 @@ select{
 input[type=range] {
     -webkit-appearance: none;
     background-color: white;
-    width: 90%;
+    width: 99%;
     height:10px;
     cursor: pointer;
 }
@@ -144,10 +161,17 @@ input[type="range"]::-webkit-slider-thumb {
     height: 20px;
 }
 
+.slidecontainer{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 button{
     border-radius: 5px;
     border:none;
-    background-color: #673ab7;
+    background-color: #ec8451;
     font-weight: bold;
     color: white;
     height: 40px;
@@ -169,6 +193,9 @@ button:hover{
     font-size: 15px;
 }
 
+#window5{
+    background-color: #013b56;
+}
 
 /*Speech bubble*/
 .speech-bubble {
@@ -178,6 +205,7 @@ button:hover{
     width: 110px;
     text-align: center;
     padding: 20px;
+    color: #333;
     
 }
 

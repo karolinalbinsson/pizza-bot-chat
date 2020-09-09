@@ -89,7 +89,7 @@ const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
     //Get the fullname from the pizza object
     let pizzaNameOut = pizzas.find(x => x.type === pizzaName).fullName;
     
-   return (`<b>Receipt for:</b> ${customerName}<br> <b>You have ordered:</b> ${pizzaNameOut} <br><b>Total Price:</b> ${orderTotal} SEK<br> <b>Estimated cooking time:</b> ${orderInfo} minutes.<br>`);    
+   return (`Receipt for: ${customerName}<br> You have ordered: ${pizzaNameOut} <br>Total Price: ${orderTotal} SEK<br> Estimated cooking time: ${orderInfo} minutes.<br>`);    
 }
 
 const setPizzaPic = (pizzaName) =>{
