@@ -52,6 +52,7 @@ const validatePizzaName = (orderName = "defaultPizza") => {
 
 /*Total cost function*/ 
 const calculateTotalCost = (orderQuantity,pizzaName) =>{
+    console.log("calculateTotalCost");
     console.log("In calculate total cost");
     console.log(pizzaName) + " pizzaName";
 
@@ -68,6 +69,7 @@ const calculateTotalCost = (orderQuantity,pizzaName) =>{
 
 /*Cooking time function */
 const calculateCookingTime = (orderQuantity) =>{
+    console.log("calculateCOokingTime");
     let cookingTime = 0;
     if(orderQuantity <= 2 && orderQuantity > 0){
         cookingTime = 10;
@@ -83,6 +85,7 @@ const calculateCookingTime = (orderQuantity) =>{
 }
 
 const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
+    console.log("printReceipt");
     //Get the fullname from the pizza object
     let pizzaNameOut = pizzas.find(x => x.type === pizzaName).fullName;
     
@@ -91,7 +94,7 @@ const printReceipt = (customerName,pizzaName,orderTotal,orderInfo) =>{
 
 const setPizzaPic = (pizzaName) =>{
     
-    
+    console.log("setPizzaPic");
     if (pizzaName.match(/hawaiian.*/)){   
         document.getElementById("pizza-icon").src = "./images/hawaii.jpg";
     }
@@ -109,7 +112,7 @@ const setPizzaPic = (pizzaName) =>{
 
 
 /*Get the elements of the form*/
-const createOrder = () =>{
+const createOrder = (buttonID) =>{
 
     const checkProgressBar =  document.getElementById("pizza-progress").value;
     if(checkProgressBar != "3")
@@ -119,6 +122,8 @@ const createOrder = () =>{
     }
     else
     {
+        //call the window function to show/hide the correct div
+        nextButtonClicked(buttonID);
         document.getElementById("pizza-progress").value = 4;
         document.getElementById("order-confirmation").style.display="flex";
         console.log("Create order function");
@@ -236,3 +241,51 @@ const setCookingTimer = (cookingTime) =>{
         }
         }, 1000);
 }
+
+
+/*Button functions for moving to the next question*/
+const nextButtonClicked = (buttonID) =>{
+    console.log(buttonID + " button clicked");
+
+    switch(buttonID){
+        case "nameButton": {
+            console.log("case is nameButton" + buttonID, typeof buttonID);
+            let winToHide = document.getElementById("window1").classList.toggle("window-invisible");
+            let winToShow = document.getElementById("window2").classList.toggle("window-invisible");
+             winToShow = document.getElementById("window2").classList.toggle("window-visible");
+            break;
+        }
+        case "pizzaButton": {
+            console.log("case is pizzaButton" + buttonID);
+            let winToHide = document.getElementById("window2").classList.toggle("window-invisible");
+            let winToShow = document.getElementById("window3").classList.toggle("window-invisible");
+             winToShow = document.getElementById("window3").classList.toggle("window-visible");
+            break;
+        }
+        case "numberButton": {
+            console.log("case is numberButton"+ buttonID);
+            let winToHide = document.getElementById("window3").classList.toggle("window-invisible");
+            let winToShow = document.getElementById("window4").classList.toggle("window-invisible");
+             winToShow = document.getElementById("window4").classList.toggle("window-visible");
+            break;
+        }
+
+        case "orderButton": {
+            console.log("case is orderButtonButton"+ buttonID);
+            let winToHide = document.getElementById("window4").classList.toggle("window-invisible");
+            document.getElementById("window5").classList.toggle("window-invisible");
+            document.getElementById("window5").classList.toggle("window-visible");
+            //delay the hiding of the GIF and the Showing of the receipt
+            setTimeout(function () {document.getElementById('window5').classList.toggle("window-invisible");document.getElementById("window5").classList.toggle("window-visible");
+            document.getElementById("window6").classList.toggle("window-invisible");
+            document.getElementById("window6").classList.toggle("window-visible");
+        
+                }, 3700);
+           
+
+            break;
+        }
+
+        
+    }
+} 

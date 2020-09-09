@@ -13,55 +13,90 @@
    
 
  
-    <section class="pizza-wrapper">
+<section class="pizza-wrapper">
           <form id="order-form" method="post">
-          
-          <h5 class="form-title">Welcome to the pizza bot!</h5>
-           <h6 class="form-sub-title">Order your pizza here.</h6>
-          <div class="input-wrap">
-            <label for="user-name">Name</label><br>
-            <input type="text" id="user-name" name="user-name" required onchange="checkProgress()"><br>
-          </div>
-          <div class="input-wrap">
-            <label for="pizza-select">Select pizza</label><br>
-            <select name="pizza-select" id="pizza-select" required onchange="checkProgress()">
-              <option value=""></option>
-              <option value="hawaiian">Hawaiian Pizza</option>
-              <option value="pepperoni">Pepperoni Pizza</option>
-              <option value="vegetarian">Vegetarian Pizza</option>
-              <option value="margerita">Margherita Pizza</option>
-              <option value="quattro">Quattro Stagione</option>
-            </select>
-          </div>
+          <div id="window1">
+              <h5 class="form-title">Welcome to the pizza bot!</h5>
+              <!--<h6 class="form-sub-title">Order your pizza here.</h6>-->
+              <div class="input-wrap">
+                <div class="speech-bubble"> 
+                  What's your name?
+                </div>
+              
+                <label for="user-name"></label><br>
+                <input type="text" id="user-name" name="user-name" required onchange="checkProgress()"><br>
+                <button type="button" id="nameButton" onclick="nextButtonClicked(this.id)">>>></button>
+               
+              </div>
+        </div>
+        
+        <div id="window2" class="window-invisible">
+            <div class="input-wrap">
+
+              <div class="speech-bubble"> 
+                Okay, start off with selecting a pizza from our menu!
+              </div>
+
+              <label for="pizza-select"></label><br>
+              <select name="pizza-select" id="pizza-select" required onchange="checkProgress()">
+                <option value=""></option>
+                <option value="hawaiian">Hawaiian Pizza</option>
+                <option value="pepperoni">Pepperoni Pizza</option>
+                <option value="vegetarian">Vegetarian Pizza</option>
+                <option value="margerita">Margherita Pizza</option>
+                <option value="quattro">Quattro Stagione</option>
+              </select>
+              <button type="button" id="pizzaButton" onclick="nextButtonClicked(this.id)">>>></button>
+             
+            </div>
+        </div>
            
+        <div id="window3" class="window-invisible">
           <div class="input-wrap"> 
+            <div class="speech-bubble"> 
+              Yum, now tell me how many pizzas you want.
+            </div>
             <div class="slidecontainer">
-            <label for="pizza-slider">Select how many pizzas you want</label><br>
+            <label for="pizza-slider"></label><br>
             <input type="range" min="0" max="10" value="0" class="pizza-slider" id="pizza-slider" onchange="changeRangeDisplayValue()">
             <output id= "output-range" name="output-range" for="pizza-slider" >0</output>
+            <button type="button" id="numberButton" onclick="nextButtonClicked(this.id)">>>></button>
+            
           </div>
         </div>
+      </div>
 
+      <div id="window4" class="window-invisible">
              <div class="input-wrap">
-              <button type="button" onClick="return createOrder()">Place order</button>
-        
-             </div>
-              <div class="input-wrap">
-                <label for="pizza-progress">Order progress:</label><br>
-                <progress id="pizza-progress" value="0" max="4">0</progress>
+              <div class="speech-bubble"> 
+                Okay! Now just place the order and we'll start cooking.
               </div>
+              <button type="button" id="orderButton" onclick="return createOrder(this.id)">Place order</button>
+             
+            </div>
+          </div>
+    
+    <div id="window5" class="window-invisible"><img class="pizza-gif" src="./images/cooking.gif"></div>
+    
+    <div id="window6" class="window-invisible">
+              
             </form>
 
+            <section id="order-confirmation">
+              <p id="order-confirmation-p"></p>
+                <span id="timer-label">Time left:</span>
+              <p id="timer"></p>
+              
+          
+            <img id="pizza-icon" src="./images/baking.jpg"></img>
+            </section>
+    </div>
 
-          <section id="order-confirmation">
-            <p id="order-confirmation-p"></p>
-              <span id="timer-label">Time left:</span>
-            <p id="timer"></p>
-            
-        
-          <img id="pizza-icon" src="./images/baking.jpg"></img>
-          </section>
-        
+          
+    <div class="input-wrap">
+      <label for="pizza-progress" id ="pizza-progress-label">Order progress:</label><br>
+      <progress id="pizza-progress" value="0" max="4">0</progress>
+    </div>
 
     </section>
 
