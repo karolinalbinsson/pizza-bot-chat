@@ -24,8 +24,8 @@
                 </div>
               
                 <label for="user-name"></label><br>
-                <input type="text" id="user-name" name="user-name" required onchange="checkProgress()"><br>
-                <button type="button" id="nameButton" onclick="nextButtonClicked(this.id)">>>></button>
+                <input type="text" id="user-name" name="user-name" required><br>
+                <button type="button" class="choice-button" id="nameButton" onclick="nextButtonClicked(this.id)">>>></button>
                
               </div>
         </div>
@@ -38,7 +38,7 @@
               </div>
 
               <label for="pizza-select"></label><br>
-              <select name="pizza-select" id="pizza-select" required onchange="checkProgress()">
+              <select name="pizza-select" id="pizza-select" required>
                 <option value=""></option>
                 <option value="hawaiian">Hawaiian Pizza</option>
                 <option value="pepperoni">Pepperoni Pizza</option>
@@ -46,7 +46,7 @@
                 <option value="margerita">Margherita Pizza</option>
                 <option value="quattro">Quattro Stagione</option>
               </select>
-              <button type="button" id="pizzaButton" onclick="nextButtonClicked(this.id)">>>></button>
+              <button type="button" class="choice-button" id="pizzaButton" onclick="nextButtonClicked(this.id)">>>></button>
              
             </div>
         </div>
@@ -60,7 +60,7 @@
             <label for="pizza-slider"></label><br>
             <input type="range" min="0" max="10" value="0" class="pizza-slider" id="pizza-slider" onchange="changeRangeDisplayValue()">
             <output id= "output-range" name="output-range" for="pizza-slider" >0</output>
-            <button type="button" id="numberButton" onclick="nextButtonClicked(this.id)">>>></button>
+            <button type="button" class="choice-button" id="numberButton" onclick="nextButtonClicked(this.id)">>>></button>
             
           </div>
         </div>
@@ -71,7 +71,7 @@
               <div class="speech-bubble"> 
                 Okay! Now just place the order and we'll start cooking.
               </div>
-              <button type="button" id="orderButton" onclick="return createOrder(this.id)">Place order</button>
+              <button type="button" class="choice-button" id="orderButton" onclick="return createOrder(this.id)">Place order</button>
              
             </div>
           </div>
@@ -93,7 +93,7 @@
     </div>
 
           
-    <div class="input-wrap">
+    <div class="input-wrap" id="pizza-progress-div">
       <label for="pizza-progress" id ="pizza-progress-label">Order progress:</label><br>
       <progress id="pizza-progress" value="0" max="4">0</progress>
     </div>

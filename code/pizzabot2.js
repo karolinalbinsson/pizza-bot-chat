@@ -131,10 +131,6 @@ const createOrder = (buttonID) =>{
         let customerName = document.getElementById("user-name").value;
         let pizzaName = document.getElementById("pizza-select").value;
         let orderQuantity = document.getElementById("pizza-slider").value;
-
-  
-        
-
         let orderTotal = calculateTotalCost(orderQuantity,pizzaName);
         let orderInfo = calculateCookingTime(orderQuantity);
 
@@ -145,38 +141,17 @@ const createOrder = (buttonID) =>{
         //Put order info in the html-doc
         document.getElementById("order-confirmation-p").innerHTML = orderSummary;
         
-
+       
         //Change background picture depending on pizza style
             setPizzaPic(pizzaName);
             setCookingTimer(orderInfo);
+
+                      
     }
     
 return false;
 }
 
-
-/*
-if(validatePizzaName(orderName) == true)
-{
-    orderQuantity = prompt(`Okay, how many pizzas do you want?`);
-
-    //Calculate the total cost
-    orderTotal = calculateTotalCost(orderQuantity,pizzaPrice);
-    //const orderTotal = orderQuantity * pizzaPrice;
-    totalCookingTime = calculateCookingTime(orderQuantity);
-    
-    //Summarize order
-    let orderInfo = (`<h2>Great, I'll let started on you ${orderName} right away, and it'll cost you ${orderTotal} kr.\n The pizzas will take ${totalCookingTime} minutes</h2> `);
-    
-    //Put order info in the html-doc
-    document.getElementById("pizza-d").innerHTML = orderInfo;
-    
- 
-
-}
-else alert("Pick a pizza from the menu");
-
-*/
 
 const changeRangeDisplayValue = () =>{
     let rangeVal = document.getElementById("pizza-slider").value;
@@ -246,46 +221,98 @@ const setCookingTimer = (cookingTime) =>{
 /*Button functions for moving to the next question*/
 const nextButtonClicked = (buttonID) =>{
     console.log(buttonID + " button clicked");
+    if(validateInput(buttonID)){
+       
 
-    switch(buttonID){
-        case "nameButton": {
-            console.log("case is nameButton" + buttonID, typeof buttonID);
-            let winToHide = document.getElementById("window1").classList.toggle("window-invisible");
-            let winToShow = document.getElementById("window2").classList.toggle("window-invisible");
-             winToShow = document.getElementById("window2").classList.toggle("window-visible");
-            break;
+        switch(buttonID){
+            case "nameButton": {
+                console.log("case is nameButton" + buttonID, typeof buttonID);
+                let winToHide = document.getElementById("window1").classList.toggle("window-invisible");
+                let winToShow = document.getElementById("window2").classList.toggle("window-invisible");
+                 winToShow = document.getElementById("window2").classList.toggle("window-visible");
+                break;
+            }
+            case "pizzaButton": {
+                console.log("case is pizzaButton" + buttonID);
+                let winToHide = document.getElementById("window2").classList.toggle("window-invisible");
+                let winToShow = document.getElementById("window3").classList.toggle("window-invisible");
+                 winToShow = document.getElementById("window3").classList.toggle("window-visible");
+                break;
+            }
+            case "numberButton": {
+                console.log("case is numberButton"+ buttonID);
+                let winToHide = document.getElementById("window3").classList.toggle("window-invisible");
+                let winToShow = document.getElementById("window4").classList.toggle("window-invisible");
+                 winToShow = document.getElementById("window4").classList.toggle("window-visible");
+                break;
+            }
+    
+            case "orderButton": {
+                console.log("case is orderButtonButton"+ buttonID);
+                let winToHide = document.getElementById("window4").classList.toggle("window-invisible");
+                document.getElementById("window5").classList.toggle("window-invisible");
+                document.getElementById("window5").classList.toggle("window-visible");
+                //delay the hiding of the GIF and the Showing of the receipt
+                setTimeout(function () {document.getElementById('window5').classList.toggle("window-invisible");document.getElementById("window5").classList.toggle("window-visible");
+               
+                document.getElementById("window6").classList.toggle("window-invisible");
+                document.getElementById("window6").classList.toggle("window-visible");
+                  //Remove the progress bar on finish
+                  document.getElementById("pizza-progress-div").classList.toggle("window-invisible");
+    
+              
+                    }, 3700);
+               
+                
+            
+                break;
+              
+            }
+            
+            
         }
-        case "pizzaButton": {
-            console.log("case is pizzaButton" + buttonID);
-            let winToHide = document.getElementById("window2").classList.toggle("window-invisible");
-            let winToShow = document.getElementById("window3").classList.toggle("window-invisible");
-             winToShow = document.getElementById("window3").classList.toggle("window-visible");
-            break;
-        }
-        case "numberButton": {
-            console.log("case is numberButton"+ buttonID);
-            let winToHide = document.getElementById("window3").classList.toggle("window-invisible");
-            let winToShow = document.getElementById("window4").classList.toggle("window-invisible");
-             winToShow = document.getElementById("window4").classList.toggle("window-visible");
-            break;
-        }
-
-        case "orderButton": {
-            console.log("case is orderButtonButton"+ buttonID);
-            let winToHide = document.getElementById("window4").classList.toggle("window-invisible");
-            document.getElementById("window5").classList.toggle("window-invisible");
-            document.getElementById("window5").classList.toggle("window-visible");
-            //delay the hiding of the GIF and the Showing of the receipt
-            setTimeout(function () {document.getElementById('window5').classList.toggle("window-invisible");document.getElementById("window5").classList.toggle("window-visible");
-            document.getElementById("window6").classList.toggle("window-invisible");
-            document.getElementById("window6").classList.toggle("window-visible");
-        
-                }, 3700);
-           
-
-            break;
-        }
-
-        
-    }
+        checkProgress();
+    }else alert("Oops, fill in a value please :)");
+   
 } 
+
+
+const validateInput = (buttonID) =>{
+    console.log("validateInput") + buttonID;
+
+    let isValid = false;
+    let buttonClicked = buttonID;
+    switch(buttonClicked){
+
+        case "nameButton" : {
+            console.log("is namebuton");
+            let inputToValidate = document.getElementById("user-name").value;
+            console.log(inputToValidate);
+            if(inputToValidate !== "" || inputToValidate.length > 1){
+                console.log("input has value");
+                    isvalid = true;
+                    return isvalid;
+            } 
+            
+            break;
+        }
+        case "pizzaButton" : {
+            let inputToValidate = document.getElementById("pizza-select").value;
+            if(inputToValidate != ""){
+                    isvalid = true;
+                    return isvalid;
+            }
+            break;
+        }
+        case "numberButton" : {
+            let inputToValidate = document.getElementById("pizza-slider").value;
+            if(inputToValidate != "" && inputToValidate != "0"){
+                    isvalid = true;
+                    return isvalid;
+            }
+            break;
+        }
+        default : return isvalid;
+    }
+    
+}
